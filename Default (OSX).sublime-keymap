@@ -1,0 +1,4 @@
+[
+  { "keys": ["alt+tab"], "command": "cycle_pane", "args": {"direction": "next" }},
+  { "keys": ["alt+shift+tab"], "command": "cycle_pane", "args": {"direction": "prev" }}
+]
