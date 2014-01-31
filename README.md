@@ -1,4 +1,4 @@
-Layout
+Sublime Pane Resizer
 ======
 
-Sublime Text 2 dynamic layout plugin
+A Sublime Text 2 plugin that allows panes to be resized without a mouse.
