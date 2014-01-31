@@ -1,4 +1,7 @@
 [
   { "keys": ["alt+tab"], "command": "cycle_pane", "args": {"direction": "next" }},
-  { "keys": ["alt+shift+tab"], "command": "cycle_pane", "args": {"direction": "prev" }}
+  { "keys": ["alt+shift+tab"], "command": "cycle_pane", "args": {"direction": "prev" }},
+
+  { "keys": ["alt+="], "command": "resize_pane", "args": {"direction": "out" }},
+  { "keys": ["alt+-"], "command": "resize_pane", "args": {"direction": "in" }}
 ]
