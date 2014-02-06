@@ -1,6 +1,9 @@
 import sublime
 import sublime_plugin
 
+AMOUNT = 0.05
+PAD = 0.04
+
 
 class PaneCommand(sublime_plugin.WindowCommand):
     """Base class."""
@@ -56,7 +59,7 @@ class PaneCommand(sublime_plugin.WindowCommand):
             return
 
         pane = self.window.active_group()
-        amount = .05
+        amount = AMOUNT
 
         layout = self.push_left(layout, pane, amount)
         layout = self.push_right(layout, pane, amount)
@@ -84,9 +87,11 @@ class PaneCommand(sublime_plugin.WindowCommand):
         cols = layout['cols']
 
         # Left
-        cols[cells[pane][0]] = max(cols[cells[pane][0]] - amount, 0)
+        if cols[cells[pane][0]] != 0:
+            cols[cells[pane][0]] = max(cols[cells[pane][0]] - amount, 0 + PAD)
         # Top
-        rows[cells[pane][1]] = max(rows[cells[pane][1]] - amount, 0)
+        if rows[cells[pane][1]] != 0:
+            rows[cells[pane][1]] = max(rows[cells[pane][1]] - amount, 0 + PAD)
 
         return layout
 
@@ -96,9 +101,11 @@ class PaneCommand(sublime_plugin.WindowCommand):
         cols = layout['cols']
 
         # Right
-        cols[cells[pane][2]] = min(cols[cells[pane][2]] + amount, 1)
+        if cols[cells[pane][2]] != 1:
+            cols[cells[pane][2]] = min(cols[cells[pane][2]] + amount, 1 - PAD)
         # Bottom
-        rows[cells[pane][3]] = min(rows[cells[pane][3]] + amount, 1)
+        if rows[cells[pane][3]] != 1:
+            rows[cells[pane][3]] = min(rows[cells[pane][3]] + amount, 1 - PAD)
 
         return layout
 
@@ -112,7 +119,7 @@ class PaneCommand(sublime_plugin.WindowCommand):
             return
 
         pane = self.window.active_group()
-        amount = .05
+        amount = AMOUNT
 
         layout = self.pull_left(layout, pane, amount)
         layout = self.pull_right(layout, pane, amount)
@@ -141,10 +148,10 @@ class PaneCommand(sublime_plugin.WindowCommand):
 
         # Left
         if cols[cells[pane][0]] != 0:
-            cols[cells[pane][0]] += amount
+            cols[cells[pane][0]] = min(cols[cells[pane][0]] + amount, 1 - PAD)
         # Top
         if rows[cells[pane][1]] != 0:
-            rows[cells[pane][1]] += amount
+            rows[cells[pane][1]] = min(rows[cells[pane][1]] + amount, 1 - PAD)
 
         return layout
 
@@ -155,10 +162,10 @@ class PaneCommand(sublime_plugin.WindowCommand):
 
         # Right
         if cols[cells[pane][2]] != 1:
-            cols[cells[pane][2]] -= amount
+            cols[cells[pane][2]] = max(cols[cells[pane][2]] - amount, 0 + PAD)
         # Bottom
         if rows[cells[pane][3]] != 1:
-            rows[cells[pane][3]] -= amount
+            rows[cells[pane][3]] = max(rows[cells[pane][3]] - amount, 0 + PAD)
 
         return layout
 
