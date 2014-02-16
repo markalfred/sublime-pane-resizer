@@ -1,0 +1,9 @@
+{
+  // Amount by which pane's size should be increased/decreased.
+  // ie. 0.05 = 5%
+  "resize_amount": 0.05,
+
+  // Amount of space to leave at the edge of the window.
+  // 0.05 = 5% of window size.
+  "padding": 0.05
+}
