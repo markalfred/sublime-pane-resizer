@@ -174,7 +174,7 @@ class ResizePane(PaneCommand):
     def run(self, direction):
         settings = sublime.load_settings('Pane Resizer.sublime-settings')
         self.amount = settings.get('resize_amount')
-        self.padding = settings.get('padding')
+        self.padding = max(settings.get('padding'), 0.00001)
 
         if direction == 'out':
             self.expand()
