@@ -18,8 +18,8 @@ Decrease pane size
 Cycle through panes in Windows/Linux:
 
 ```
-ctrl + alt + tab
-ctrl + alt + shift + tab
+alt + pageup
+alt + pagedown
 ```
 
 OSX:
